@@ -5,8 +5,8 @@ const Footer = () => {
     return (
         <div className='mt-20 border-2 border-purple-300'>
             <div className='text-center my-10'>
-                <h1 className='text-3xl lg:text-4xl font-bold text-purple-500'>PullUp</h1>
-                <p className='text-gray-400 text-base'>Building a Better Tomorrow, Together.</p>
+                <h1 className='text-2xl md:text-3xl lg:text-4xl font-bold text-purple-500'>PullUp</h1>
+                <p className='mt-5 text-gray-500 text-base md:text-lg'>Building a Better Tomorrow, <span className='text-blue-400'>Together.</span></p>
             </div>
             <hr />
             <div className='flex flex-col md:flex-row justify-around gap-y-10 my-5 '>
