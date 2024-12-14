@@ -33,7 +33,7 @@ const Navbar = () => {
 
     return (
         <div className="container mx-auto">
-            <nav className="flex justify-between items-center bg-purple-500 py-4 px-6 rounded-xl border-2 border-dashed border-b-4">
+            <nav className="flex justify-between items-center bg-purple-500 py-6 px-6 rounded-t-xl border-x-2 border-dashed border-yellow-200">
                 {/* Website Logo */}
                 <h1 className="text-2xl lg:text-4xl font-bold text-white">
                     PullUp
@@ -42,7 +42,7 @@ const Navbar = () => {
                 {/* Navigation Menu */}
                 <ul
                     ref={menuRef}
-                    className={`flex flex-col lg:flex-row lg:items-center lg:justify-center absolute lg:relative right-0 top-20 lg:top-0 bg-white lg:bg-transparent text-black lg:text-white px-5 py-2 lg:px-0 lg:py-0 rounded-lg gap-y-4 lg:gap-x-8 transition-all duration-300 ${
+                    className={`flex flex-col lg:flex-row lg:items-center lg:justify-center absolute z-10 lg:relative right-0 top-20 lg:top-0 bg-white lg:bg-transparent text-black lg:text-white px-5 py-5 lg:px-0 lg:py-0 rounded-lg gap-y-6 lg:gap-x-8 transition-all duration-300 ${
                         open ? "block" : "hidden lg:flex"
                     }`}
                 >
@@ -53,7 +53,7 @@ const Navbar = () => {
                                 className={({ isActive }) =>
                                     isActive
                                         ? "px-3 py-2 rounded-xl font-extrabold bg-purple-600 text-white border-2 border-black text-base md:text-sm lg:text-lg"
-                                        : "hover:text-purple-300 border-2 border-purple-400 p-2 rounded-lg"
+                                        : "hover:text-purple-300 border-2 border-purple-400 p-2 rounded-lg z-10"
                                 }
                                 onClick={() => setOpen(false)} // Close menu on link click
                             >
