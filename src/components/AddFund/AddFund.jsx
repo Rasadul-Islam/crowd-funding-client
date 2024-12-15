@@ -1,21 +1,40 @@
 import React from 'react';
+import Swal from 'sweetalert2'
 
 const AddFund = () => {
-    const handleAddcampaign = event =>{
+ 
+    
+    const handleAddcampaign = event => {
         event.preventDefault();
-
         const from = event.target;
-
         const image = from.image.value;
         const title = from.title.value;
         const campaign_type = from.campaign_type.value;
         const description = from.description.value;
-        const amount = from.amount.value;
+        const donation_amount = from.donation_amount.value;
         const deadline = from.deadline.value;
-        const newCampaign = {image, title, campaign_type, description, amount, deadline}
-        
-        console.log(newCampaign);
+        const newCampaign = { image, title, campaign_type, description, donation_amount, deadline }
 
+        fetch('http://localhost:5000/campaign', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newCampaign)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Successfully added your campaign',
+                        icon: 'success',
+                        confirmButtonText: 'Okay'
+                      })
+                    console.log(data);
+                }
+                else alert('Try again');
+            })
     }
     return (
         <div className='container mx-auto flex flex-col  items-center my-5'>
@@ -45,7 +64,7 @@ const AddFund = () => {
                 </div>
                 <div className="flex flex-col mt-1">
                     <label className="label text-xl">Donation Amount :</label>
-                    <input type="number" name='amount' placeholder=" $ Donation Amount $" className="input input-bordered max-w-xs ml-16" required />
+                    <input type="number" name='donation_amount' placeholder=" $ Donation Amount $" className="input input-bordered max-w-xs ml-16" required />
                 </div>
                 <div className="flex flex-col mt-1">
                     <label className="label text-xl">Deadline :</label>
@@ -62,7 +81,7 @@ const AddFund = () => {
                 <div className="flex flex-col lg:col-span-2 mt-1 w-full max-w-xl mx-auto items-center">
                     <input type="submit" className='btn hover:text-purple-300 border-2 border-purple-400 px-3 py-2 rounded-lg bg-purple-100 font-bold text-center text-xl mb-5 mt-10 w-full' />
                 </div>
-                
+
             </form>
         </div>
     );
