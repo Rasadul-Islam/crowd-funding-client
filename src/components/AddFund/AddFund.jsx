@@ -31,8 +31,7 @@ const AddFund = () => {
                         icon: 'success',
                         confirmButtonText: 'Okay'
                       })
-                    console.log(data);
-                }
+                   }
                 else alert('Try again');
             })
     }
