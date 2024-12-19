@@ -1,7 +1,7 @@
 import React from 'react';
 import Swal from 'sweetalert2';
 
-const CampaignCard = ({ campaign }) => {
+const CampaignCard = ({ campaign, campaigns, setCampaigns}) => {
     const { _id, image, title, campaign_type, description, donation_amount, deadline } = campaign;
 
     const handleSeeMore = _id => {
@@ -30,6 +30,8 @@ const CampaignCard = ({ campaign }) => {
                             text: "Your file has been deleted.",
                             icon: "success"
                         });
+                        const remaining = campaigns.filter(camp =>camp._id !== _id);
+                        setCampaigns(remaining);
                     }
                 })
             }
