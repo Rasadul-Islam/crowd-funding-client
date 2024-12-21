@@ -14,6 +14,7 @@ import MyCampaign from './components/MyCampaign/MyCampaign.jsx';
 import MyDonation from './components/MyDonation/MyDonation.jsx';
 import LogIn from './components/LogIn/LogIn.jsx';
 import Register from './components/Register/Register.jsx';
+import CampaignCardDitails from './components/CampaignCardDitails/CampaignCardDitails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,12 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/card/ditails/:id",
+        element: <CampaignCardDitails></CampaignCardDitails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/campaign/${params.id}`),
       },
       
     ]

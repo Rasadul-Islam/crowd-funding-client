@@ -1,12 +1,10 @@
 import React from 'react';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
-const CampaignCard = ({ campaign, campaigns, setCampaigns}) => {
+const CampaignCard = ({ campaign, campaigns, setCampaigns }) => {
     const { _id, image, title, campaign_type, description, donation_amount, deadline } = campaign;
 
-    const handleSeeMore = _id => {
-        console.log("here is see more", _id)
-    }
 
     const handleDelete = _id => {
         Swal.fire({
@@ -22,18 +20,18 @@ const CampaignCard = ({ campaign, campaigns, setCampaigns}) => {
                 fetch(`http://localhost:5000/campaign/${_id}`, {
                     method: "DELETE"
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                        });
-                        const remaining = campaigns.filter(camp =>camp._id !== _id);
-                        setCampaigns(remaining);
-                    }
-                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                            const remaining = campaigns.filter(camp => camp._id !== _id);
+                            setCampaigns(remaining);
+                        }
+                    })
             }
         });
     }
@@ -48,7 +46,7 @@ const CampaignCard = ({ campaign, campaigns, setCampaigns}) => {
                         className='w-72 h-52 mt-5 rounded-xl' />
                 </figure>
                 <div className='px-5 mt-5'>
-                    <h1 className='text-xl font-bold mt-2 '>{title}</h1>
+                    <h1 className='text-xl font-bold mt-2 capitalize'>{title}</h1>
                     <h1 className='text-lg font-semibold mt-1'>Type: {campaign_type}</h1>
                     <h1 className='text-lg font-semibold mt-1'>Deadline: {deadline}</h1>
                     <h1 className='text-lg  mt-1 overflow-hidden text-ellipsis whitespace-nowrap'
@@ -56,7 +54,9 @@ const CampaignCard = ({ campaign, campaigns, setCampaigns}) => {
                     </h1>
                     <div className='w-full'>
                         <button onClick={() => handleDelete(_id)} className='btn hover:text-purple-300 border-2 border-red-600 px-2 py-1 rounded-lg bg-red-300 font-bold text-lg m-5'>Delete</button>
-                        <button onClick={() => handleSeeMore(_id)} className='btn hover:text-purple-300 border-2 border-purple-400 px-2 py-1 rounded-lg bg-purple-100 font-bold text-lg m-5'>See More</button>
+                        <Link to={`/card/ditails/${_id}`}
+                            className='btn hover:text-purple-300 border-2 border-purple-400 px-2 py-1 rounded-lg bg-purple-100 font-bold text-lg m-5' >See More
+                        </Link>
                     </div>
                 </div>
             </div>
