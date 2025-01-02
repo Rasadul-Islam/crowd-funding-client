@@ -35,9 +35,9 @@ const Navbar = () => {
         <div className="container mx-auto">
             <nav className="flex justify-between items-center bg-purple-500 py-6 px-6 rounded-t-xl border-x-2 border-dashed border-yellow-200">
                 {/* Website Logo */}
-                <h1 className="text-2xl lg:text-4xl font-bold text-white">
+                <Link to="/" className="text-2xl lg:text-4xl font-bold text-white">
                     PullUp
-                </h1>
+                </Link>
 
                 {/* Navigation Menu */}
                 <ul

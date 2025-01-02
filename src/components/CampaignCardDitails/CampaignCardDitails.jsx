@@ -3,7 +3,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const CampaignCardDitails = () => {
     const campaign = useLoaderData();
-    const { _id, image, title, campaign_type, description, donation_amount, deadline } = campaign;
+    const {image, title, campaign_type, description, donation_amount, deadline } = campaign;
     return (
         <div className="container card bg-purple-50 shadow-xl border-2 border-purple-500 mx-auto mt-10">
             <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>

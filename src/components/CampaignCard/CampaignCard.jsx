@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 
 const CampaignCard = ({ campaign, campaigns, setCampaigns }) => {
-    const { _id, image, title, campaign_type, description, donation_amount, deadline } = campaign;
+    const { _id, image, title, campaign_type, description, deadline } = campaign;
 
 
     const handleDelete = _id => {
