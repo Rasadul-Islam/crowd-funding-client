@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Banner from '../Banner/Banner';
-import CampaignCard from '../campaignCard/campaignCard';
-import { useLoaderData } from 'react-router-dom';
+import AllCampaingns from '../AllCampaigns/AllCampaingns';
 
 const Home = () => {
     const partners = [
@@ -56,23 +55,14 @@ const Home = () => {
             "logo": "https://i.ibb.co.com/D9dLX2R/images-q-tbn-ANd9-Gc-QDYA0mh-FNAfz-FTKy-Lkw-Un-t8o-Dva-W-g-T-R2-Q-s.png"
         }
     ]
-    const loadedcampaigns = useLoaderData();
-    const [campaigns,setCampaigns]=useState(loadedcampaigns);
 
     return (
         <div className='container mx-auto mb-10'>
+            {/*Banner carousel*/}
             <Banner></Banner>
             {/* Running Campaign */}
-            <div className='my-10 flex flex-col items-center'>
-                <div className='font-bold text-2xl mb-10'>All campaign count: {campaigns.length}</div>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16'>
-                    {campaigns.map(campaign =><CampaignCard key={campaign._id} campaign={campaign}
-                    campaigns={campaigns}
-                    setCampaigns={setCampaigns}
-                    ></CampaignCard>)}
-                </div>
-                
-            </div>
+            <AllCampaingns></AllCampaingns>
+
             {/* How it Work Section */}
             <div className='bg-gradient-to-b from-purple-200 to-white p-5 rounded-xl mt-20'>
                 <div className='text-center'>

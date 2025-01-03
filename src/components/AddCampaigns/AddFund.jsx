@@ -1,7 +1,7 @@
 import React from 'react';
 import Swal from 'sweetalert2'
 
-const AddFund = () => {
+const AddCampains = () => {
  
     
     const handleAddcampaign = event => {
@@ -86,4 +86,4 @@ const AddFund = () => {
     );
 };
 
-export default AddFund;
+export default AddCampains;

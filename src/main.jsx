@@ -5,8 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
-import AddFund from './components/AddFund/AddFund.jsx';
-import UpdateFund from './components/UpdateFund/UpdateFund.jsx';
+// import AddCampains from './components/AddCampaigns/AddCampains.jsx';
 import Root from './components/Root/Root.jsx';
 import Home from './components/Home/Home.jsx';
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
@@ -15,26 +14,30 @@ import MyDonation from './components/MyDonation/MyDonation.jsx';
 import LogIn from './components/LogIn/LogIn.jsx';
 import Register from './components/Register/Register.jsx';
 import CampaignCardDitails from './components/CampaignCardDitails/CampaignCardDitails.jsx';
+import AllCampaingns from './components/AllCampaigns/AllCampaingns.jsx';
+import AddCampains from './components/AddCampaigns/AddFund.jsx';
+import AuthProvider from './providers/AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement:<ErrorPage></ErrorPage>,
-    
-    children:[
+    errorElement: <ErrorPage></ErrorPage>,
+
+    children: [
       {
-        path:'/',
-        element:<Home></Home>,
-        loader: ()=> fetch('http://localhost:5000/campaign'),
+        path: '/',
+        element: <Home></Home>,
+        loader: () => fetch('http://localhost:5000/campaign'),
       },
       {
         path: "/campaigns",
-        element: <UpdateFund></UpdateFund>,
+        element: <AllCampaingns></AllCampaingns>,
+        loader: () => fetch('http://localhost:5000/campaign'),
       },
       {
         path: "/campaign/new",
-        element: <AddFund></AddFund>, 
+        element: <AddCampains></AddCampains>,
       },
       {
         path: "/campaign/my",
@@ -58,15 +61,17 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/campaign/${params.id}`),
       },
-      
+
     ]
 
   },
-  
+
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )

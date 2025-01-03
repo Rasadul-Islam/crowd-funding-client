@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const CampaignCard = ({ campaign, campaigns, setCampaigns }) => {
     const { _id, image, title, campaign_type, description, deadline } = campaign;
+    const newdeadline = new Date(deadline).toLocaleDateString('en-GB')
 
 
     const handleDelete = _id => {
