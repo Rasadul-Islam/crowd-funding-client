@@ -17,6 +17,7 @@ import CampaignCardDitails from './components/CampaignCardDitails/CampaignCardDi
 import AllCampaingns from './components/AllCampaigns/AllCampaingns.jsx';
 import AddCampains from './components/AddCampaigns/AddFund.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
+import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,15 +34,23 @@ const router = createBrowserRouter([
       {
         path: "/campaigns",
         element: <AllCampaingns></AllCampaingns>,
-        loader: () => fetch('http://localhost:5000/campaign'),
+        loader: () => fetch('http://localhost:5000/all-campaign'),
       },
       {
         path: "/campaign/new",
-        element: <AddCampains></AddCampains>,
+        element: (
+          <PrivateRoute>
+            <AddCampains></AddCampains>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/campaign/my",
-        element: <MyCampaign></MyCampaign>,
+        element: (
+          <PrivateRoute>
+            <MyCampaign></MyCampaign>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/donations/my",
@@ -57,7 +66,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/card/ditails/:id",
-        element: <CampaignCardDitails></CampaignCardDitails>,
+        element: (
+          <PrivateRoute>
+            <CampaignCardDitails></CampaignCardDitails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/campaign/${params.id}`),
       },

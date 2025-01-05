@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Banner from '../Banner/Banner';
 import AllCampaingns from '../AllCampaigns/AllCampaingns';
+import { useLoaderData } from 'react-router-dom';
+import CampaignCard from '../campaignCard/campaignCard';
 
 const Home = () => {
+
+    const loadedcampaigns = useLoaderData();
+    const [campaigns, setCampaigns] = useState(loadedcampaigns);
+
     const partners = [
         {
             "id": 1,
@@ -60,8 +66,17 @@ const Home = () => {
         <div className='container mx-auto mb-10'>
             {/*Banner carousel*/}
             <Banner></Banner>
+
             {/* Running Campaign */}
-            <AllCampaingns></AllCampaingns>
+            <div className='my-10 flex flex-col items-center border-2 border-red-500'>
+                <div className='font-bold text-2xl mb-10'>Running campaign count: {campaigns.length}</div>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16'>
+                    {campaigns.map(campaign => <CampaignCard key={campaign._id} campaign={campaign}
+                        campaigns={campaigns}
+                        setCampaigns={setCampaigns}
+                    ></CampaignCard>)}
+                </div>
+            </div>
 
             {/* How it Work Section */}
             <div className='bg-gradient-to-b from-purple-200 to-white p-5 rounded-xl mt-20'>
@@ -82,6 +97,7 @@ const Home = () => {
                     <p className='mt-5 text-gray-500 text-base md:text-lg ml-8'>Browse active campaigns and choose the ones you want to support. Whether it’s making a donation or sharing a campaign, you’re helping build a better tomorrow!</p>
                 </div>
             </div>
+            
             {/* Patner Section */}
             <div className='my-10'>
                 <div className='text-center'>

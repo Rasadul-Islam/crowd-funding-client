@@ -1,10 +1,35 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import { LuLogOut } from "react-icons/lu";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+    const { user, logOutUser } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
-    const menuRef = useRef(null); // Ref to the menu container
+    const menuRef = useRef(null); 
+
+        // User LogOut function
+        const handleLogOut = () => {
+            logOutUser()
+                .then(() => {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Log Out Success",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                      });
+                })
+        }
 
     const routes = [
         { path: "/", name: "Home", id: "1" },
@@ -42,9 +67,8 @@ const Navbar = () => {
                 {/* Navigation Menu */}
                 <ul
                     ref={menuRef}
-                    className={`flex flex-col lg:flex-row lg:items-center lg:justify-center absolute z-10 lg:relative right-0 top-20 lg:top-0 bg-white lg:bg-transparent text-black lg:text-white px-5 py-5 lg:px-0 lg:py-0 rounded-lg gap-y-6 lg:gap-x-8 transition-all duration-300 ${
-                        open ? "block" : "hidden lg:flex"
-                    }`}
+                    className={`flex flex-col lg:flex-row lg:items-center lg:justify-center absolute z-10 lg:relative right-0 top-20 lg:top-0 bg-white lg:bg-transparent text-black lg:text-white px-5 py-5 lg:px-0 lg:py-0 rounded-lg gap-y-6 lg:gap-x-8 transition-all duration-300 ${open ? "block" : "hidden lg:flex"
+                        }`}
                 >
                     {routes.map((route) => (
                         <li key={route.id}>
@@ -65,18 +89,37 @@ const Navbar = () => {
 
                 {/* Menu Icons and Login Button */}
                 <div className="flex gap-4 items-center">
-                    <Link
-                        to="/logIn"
-                        className="hover:text-purple-300 border-2 border-purple-400 px-3 py-2 rounded-lg bg-purple-200 font-bold"
-                    >
-                        Log In
-                    </Link>
-                    <Link
-                        to="/register"
-                        className="hover:text-purple-300 border-2 border-purple-400 px-3 py-2 rounded-lg bg-purple-200 font-bold"
-                    >
-                        Register
-                    </Link>
+                    {
+                        user ?
+                            <>
+                            <button 
+                            onClick={handleLogOut}
+                            className="hover:text-purple-300 border-2 border-purple-400 px-3 py-2 rounded-lg bg-purple-200 font-bold flex justify-center items-center gap-2">Log Out<LuLogOut /></button>
+                            <div>
+                                <img
+                                    src={user?.photoURL || "https://i.ibb.co/61HT020/c-HJpdm-F0-ZS9sci9pb-WFn-ZXMvd2-Vic2l0-ZS8y-MDIz-LTAx-L3-Jt-Nj-A5-LXNvb-Glka-WNvbi13-LTAw-Mi1w-Ln-Bu.jpg"}
+                                    alt="user Avatar"
+                                    title={user?.displayName ||"User Name"}
+                                    className="w-12 h-12 rounded-full hover:border bg-gray-200"
+                                />
+                            </div>
+                            </>
+                            :
+                            <>
+                                <Link
+                                    to="/logIn"
+                                    className="hover:text-purple-300 border-2 border-purple-400 px-3 py-2 rounded-lg bg-purple-200 font-bold"
+                                >
+                                    Log In
+                                </Link>
+                                <Link
+                                    to="/register"
+                                    className="hover:text-purple-300 border-2 border-purple-400 px-3 py-2 rounded-lg bg-purple-200 font-bold"
+                                >
+                                    Register
+                                </Link>
+                            </>
+                    }
 
                     {/* Hamburger Menu */}
                     <div
