@@ -8,6 +8,8 @@ const Home = () => {
 
     const loadedcampaigns = useLoaderData();
     const [campaigns, setCampaigns] = useState(loadedcampaigns);
+    // check deadline for running campaigns
+    // const runningCampaigns = campaigns.filter(campaign => new Date(campaign.deadline) >= new Date());
 
     const partners = [
         {
@@ -68,7 +70,7 @@ const Home = () => {
             <Banner></Banner>
 
             {/* Running Campaign */}
-            <div className='my-10 flex flex-col items-center border-2 border-red-500'>
+            <div className='my-10 flex flex-col items-center'>
                 <div className='font-bold text-2xl mb-10'>Running campaign count: {campaigns.length}</div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16'>
                     {campaigns.map(campaign => <CampaignCard key={campaign._id} campaign={campaign}

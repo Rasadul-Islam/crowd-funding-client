@@ -5,7 +5,7 @@ const CampaignCardDitails = () => {
     const campaign = useLoaderData();
     const {image, title, campaign_type, description, donation_amount, deadline } = campaign;
     return (
-        <div className="container card bg-purple-50 shadow-xl border-2 border-purple-500 mx-auto mt-10">
+        <div className="container card bg-purple-50 shadow-xl border-2 border-purple-500 mx-auto max-w-6xl mt-10">
             <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                 <div>
                     <img className='rounded-xl md:rounded-tr-none md:rounded-bl-none w-11/12 h-72 md:w-96 mx-auto mt-5 md:mt-0' src={image} alt={title} />
@@ -19,7 +19,7 @@ const CampaignCardDitails = () => {
                 </div>
                 
             </div>
-            <Link to='/' className='btn hover:text-purple-400 border-2 border-purple-400 px-2 py-1 rounded-lg bg-purple-100 font-bold text-xl w-2/4 mx-auto my-10'>
+            <Link to='/campaigns' className='btn hover:text-purple-400 border-2 border-purple-400 px-2 py-1 rounded-lg bg-purple-100 font-bold text-xl w-2/4 mx-auto my-10'>
             Back
             </Link>
         </div>
