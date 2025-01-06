@@ -35,7 +35,7 @@ const Navbar = () => {
         { path: "/", name: "Home", id: "1" },
         { path: "/campaigns", name: "All Campaigns", id: "2" },
         { path: "/campaign/new", name: "Add Campaign", id: "3" },
-        { path: "/campaign/my", name: "My Campaigns", id: "4" },
+        { path: `/campaign/my/${user?.email}`, name: "My Campaigns", id: "4" },
         { path: "/donations/my", name: "My Donations", id: "5" },
     ];
 

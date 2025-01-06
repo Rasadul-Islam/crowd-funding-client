@@ -1,23 +1,26 @@
 import React, { useContext } from 'react';
 import Swal from 'sweetalert2'
 import { AuthContext } from '../../providers/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const AddCampains = () => {
     const { user }= useContext(AuthContext);
+    const Navigete = useNavigate();
 
 
     const handleAddcampaign = event => {
         event.preventDefault();
-        const from = event.target;
-        const image = from.image.value;
-        const title = from.title.value;
-        const campaign_type = from.campaign_type.value;
-        const description = from.description.value;
-        const donation_amount = from.donation_amount.value;
-        const deadline = from.deadline.value;
+        const form = event.target;
+        const image = form.image.value;
+        const title = form.title.value;
+        const campaign_type = form.campaign_type.value;
+        const description = form.description.value;
+        const donation_amount = form.donation_amount.value;
+        const deadline = form.deadline.value;
         const creatorName = form.creatorName.value;
         const creatorEmail = form.creatorEmail.value;
         const newCampaign = { image, title, campaign_type, description, donation_amount, deadline, creatorName, creatorEmail}
+        console.log(newCampaign);
 
         fetch('http://localhost:5000/campaign', {
             method: 'POST',
@@ -35,6 +38,7 @@ const AddCampains = () => {
                         icon: 'success',
                         confirmButtonText: 'Okay'
                     })
+                    Navigete("/campaigns")
                 }
                 else alert('Try again');
             })
