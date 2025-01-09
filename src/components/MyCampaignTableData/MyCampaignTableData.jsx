@@ -1,9 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const MyCampaignTableData = ({ index, myCampaign, setMyCampaigns, myCampaigns }) => {
+    const Navigate = useNavigate();
     const {_id, title, deadline, campaign_type } = myCampaign;
     const newDeadline= new Date(deadline).toLocaleDateString('en-GB');
+
+
+    const handleUpdate=_id=>{
+        Navigate(`/campaign/update/${_id}`);
+    }
+
+
 
     const handleDelete = _id => {
             Swal.fire({
@@ -43,6 +52,7 @@ const MyCampaignTableData = ({ index, myCampaign, setMyCampaigns, myCampaigns })
             <td className='border border-gray-300 px-4 py-2'>{campaign_type}</td>
             <td className='border border-gray-300 px-4 flex flex-col md:flex-row md:gap-2 justify-center items-center'>
                 <button
+                    onClick={()=>handleUpdate(_id)}
                     className="btn bg-blue-500 text-white px-3 py-0 rounded hover:bg-blue-600 w-full max-w-20"
                 >
                     Update

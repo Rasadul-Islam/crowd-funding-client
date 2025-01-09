@@ -18,6 +18,7 @@ import AllCampaingns from './components/AllCampaigns/AllCampaingns.jsx';
 import AddCampains from './components/AddCampaigns/AddFund.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
 import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
+import UpdateFund from './components/UpdateFund/UpdateFund.jsx';
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,16 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/campaign/${params.id}`),
+      },
+      {
+        path: "/campaign/update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateFund></UpdateFund>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/campaign/update/${params.id}`),
       },
 
     ]
