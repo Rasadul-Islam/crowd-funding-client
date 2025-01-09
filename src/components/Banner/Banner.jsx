@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Typewriter } from 'react-simple-typewriter';
 
 const Banner = () => {
     // Scroll function to handle slide navigation
     const scrollToSlide = (id) => {
         const slide = document.getElementById(id);
         if (slide) {
-            slide.scrollIntoView({ behavior: 'smooth', block: 'center'});
+            slide.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     };
 
@@ -20,9 +21,23 @@ const Banner = () => {
                         alt="Community engagement"
                         className="w-full object-cover"
                     />
-                    <div className='absolute text-white right-5 top-5 lg:right-32 md:top-16 bg-gray-400 p-2 md:p-5 rounded-xl '>
-                    <h1 className='text-2xl lg:text-4xl font-bold text-center'>PullUp</h1>
-                    <p className='text-sm md:text-xl lg:text-2xl'>Building a Better Tomorrow, Together.</p>
+                    <h1 className='absolute text-white right-20 top-5 lg:right-40 md:top-10 p-2 md:p-5 rounded-xl text-2xl lg:text-4xl font-bold text-center'>PullUp</h1>
+                    <div className='absolute text-white right-0 top-14 md:right-0 md:top-20 p-2 md:p-5 rounded-xl'>
+                        <p className="text-sm md:text-xl lg:text-2xl w-80 md:w-96 lg:w-[500px] text-center">
+                            <Typewriter
+                                words={[
+                                    'Building a Better Tomorrow, Together.',
+                                    'Empowering Dreams, One Donation at a Time.',
+                                    'Your Contribution Fuels Innovation and Hope.',
+                                ]}
+                                loop
+                                cursor
+                                cursorStyle="|"
+                                typeSpeed={150}
+                                deleteSpeed={50}
+                                delaySpeed={2000}
+                            />
+                        </p>
                     </div>
                     <div className="absolute left-5 right-5 top-1/2 transform -translate-y-1/2 flex justify-between">
                         <Link
@@ -50,7 +65,21 @@ const Banner = () => {
                         className="w-full object-cover"
                     />
                     <div className='absolute text-purple-600 left-20 top-5  lg:left-36 md:top-20 lg:top-20 bg-white p-2 md:p-5 lg:p-10 rounded-xl w-1/3'>
-                    <p className='text-sm md:text-xl lg:text-4xl'>Empower communities with your donation, turning small contributions into impactful changes for a brighter future.</p>
+                    <p className="text-sm md:text-xl lg:text-4xl">
+                            <Typewriter
+                                words={[
+                                    'Empower communities with your donation.',
+                                    'Small contributions, big impact.',
+                                    'Support projects that matter.',
+                                ]}
+                                loop
+                                cursor
+                                cursorStyle="|"
+                                typeSpeed={70}
+                                deleteSpeed={50}
+                                delaySpeed={1000}
+                            />
+                        </p>
                     </div>
                     <div className="absolute left-5 right-5 top-1/2 transform -translate-y-1/2 flex justify-between">
                         <Link

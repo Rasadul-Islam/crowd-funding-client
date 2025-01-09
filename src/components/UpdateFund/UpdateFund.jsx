@@ -38,7 +38,14 @@ const UpdateFund = () => {
                     })
                     Navigate("/campaigns")
                 }
-                else alert('Try again');
+                else {
+                    Swal.fire({
+                        title: 'Opps!',
+                        text: 'There Is Some Problem, Try Again',
+                        icon: 'error',
+                        confirmButtonText: 'Okay'
+                    })
+                }
             })
     }
 

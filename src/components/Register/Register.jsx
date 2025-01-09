@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import Lottie from 'lottie-react';
+import registerLottie from '../../assets/lottie/register.json'
 
 const Register = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -47,7 +49,7 @@ const Register = () => {
 
         try {
             const result = await createUser(email, password);
-            await updateUserProfile(name, photoURL); 
+            await updateUserProfile(name, photoURL);
             Swal.fire({
                 icon: "success",
                 title: "Registration successful!",
@@ -67,7 +69,10 @@ const Register = () => {
     };
 
     return (
-        <div className='flex flex-col md:flex-row justify-center items-center bg-base-200 gap-0 p-10'>
+        <div className='flex flex-col md:flex-row justify-center items-center bg-base-200 gap-10 p-10'>
+            <div className='lg:size-96'>
+                <Lottie animationData={registerLottie}></Lottie>
+            </div>
             <div className='card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl p-10 md:my-20'>
                 <h1 className="text-2xl font-bold mb-5">Register :</h1>
                 <form className='form-control gap-4' onSubmit={handleRagister}>

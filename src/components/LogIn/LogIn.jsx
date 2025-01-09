@@ -2,19 +2,21 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../providers/AuthProvider';
+import Lottie from 'lottie-react';
+import logInLottie from '../../assets/lottie/logIn.json';
 
 const LogIn = () => {
 
 
-    const {logInUser, logInWithGoogle } = useContext(AuthContext)
-    const navigate= useNavigate();
+    const { logInUser, logInWithGoogle } = useContext(AuthContext)
+    const navigate = useNavigate();
     const location = useLocation();
-    const from= location?.state || '/'
+    const from = location?.state || '/'
 
 
     // Handle Google Sign-In
-    const handleGoogleLogIn= async()=>{
-        try{
+    const handleGoogleLogIn = async () => {
+        try {
             await logInWithGoogle()
             Swal.fire({
                 position: "top-center",
@@ -22,10 +24,10 @@ const LogIn = () => {
                 title: "LogIn Successful",
                 showConfirmButton: false,
                 timer: 1000
-              });
-            navigate(from, {replace:true})            
+            });
+            navigate(from, { replace: true })
         }
-        catch(error){
+        catch (error) {
             // console.log(error)
             Swal.fire({
                 position: "top-center",
@@ -33,17 +35,17 @@ const LogIn = () => {
                 title: "LogIn Faild",
                 showConfirmButton: false,
                 timer: 1000
-              });
+            });
         }
     }
 
     // email & password logIn function
-    const handleLogIn= async e=>{
+    const handleLogIn = async e => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        try{
+        try {
             await logInUser(email, password)
             Swal.fire({
                 position: "top-center",
@@ -51,25 +53,29 @@ const LogIn = () => {
                 title: "LogIn Successful",
                 showConfirmButton: false,
                 timer: 1000
-              });
-            navigate(from, {replace:true})            
+            });
+            navigate(from, { replace: true })
         }
-        catch(error){
+        catch (error) {
             console.log(error)
             Swal.fire({
                 position: "top-center",
                 icon: "error",
                 title: "LogIn Faild",
-                text:"Check your Email or Password and try again",
+                text: "Check your Email or Password and try again",
                 showConfirmButton: false,
                 timer: 2000
-              });
+            });
         }
     }
 
     return (
-        <div className="flex flex-col md:flex-row justify-center items-center bg-base-200 gap-0 p-10">
-            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl p-10 md:my-20">
+        <div className="flex justify-center bg-base-200 p-10">
+
+            <div className="card flex-col md:flex-row items-center justify-center md:gap-10 bg-base-100 w-full max-w-4xl shrink-0 shadow-2xl p-10 md:my-20">
+                <div className='lg:size-96'>
+                    <Lottie animationData={logInLottie}></Lottie>
+                </div>
                 <form onSubmit={handleLogIn} className="">
                     <h1 className="text-2xl font-bold mb-5">LogIn:</h1>
                     {/* google logIn botton */}
@@ -87,11 +93,11 @@ const LogIn = () => {
                     {/* email, password logIn form */}
                     <div className="form-control">
                         <label className="text-lg font-semibold mb-2">Email</label>
-                        <input type="email" name="email" placeholder="Email" className="input input-bordered"/>
+                        <input type="email" name="email" placeholder="Email" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="text-lg font-semibold mb-2">Password</label>
-                        <input type="password" name="password" placeholder="Password" className="input input-bordered"/>
+                        <input type="password" name="password" placeholder="Password" className="input input-bordered" />
                     </div>
                     <div className="form-control mt-6">
                         <input type="submit" value="LogIn" className="btn hover:text-purple-300 border-2 border-purple-400 px-3 py-2 rounded-lg bg-purple-100 font-bold text-center text-xl" />

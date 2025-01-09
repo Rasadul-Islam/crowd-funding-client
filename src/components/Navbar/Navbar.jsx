@@ -36,7 +36,7 @@ const Navbar = () => {
         { path: "/campaigns", name: "All Campaigns", id: "2" },
         { path: "/campaign/new", name: "Add Campaign", id: "3" },
         { path: `/campaign/my/${user?.email}`, name: "My Campaigns", id: "4" },
-        { path: "/donations/my", name: "My Donations", id: "5" },
+        { path: `/campaign/my-donation/${user?.email}`, name: "My Donations", id: "5" },
     ];
 
     // Close menu 
