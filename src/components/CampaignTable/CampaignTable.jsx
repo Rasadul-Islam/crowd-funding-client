@@ -18,7 +18,7 @@ const CampaignTable = ({ campaign, index }) => {
                 </td>
                 <td className='border border-gray-300 px-4 py-2'>
                     <Link to={`/card/ditails/${_id}`}
-                        className='btn hover:text-purple-300 border-2 border-purple-400 px-2 py-1 rounded-lg bg-purple-100 font-bold text-lg' >See More
+                        className='btn hover:text-purple-300 border-2 border-purple-400 px-2 py-1 rounded-lg bg-purple-100 font-bold md:text-lg' >See More
                     </Link>
                 </td>
             </tr>
