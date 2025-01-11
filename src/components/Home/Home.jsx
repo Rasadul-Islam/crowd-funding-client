@@ -21,6 +21,9 @@ const Home = () => {
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     };
 
+    // Running campaign condition
+    
+
     const partners = [
         {
             "id": 1,

@@ -5,8 +5,6 @@ import Swal from 'sweetalert2';
 const MyCampaignTableData = ({ index, myCampaign, setMyCampaigns, myCampaigns }) => {
     const Navigate = useNavigate();
     const {_id, title, deadline, campaign_type } = myCampaign;
-    const newDeadline= new Date(deadline).toLocaleDateString('en-GB');
-
 
     const handleUpdate=_id=>{
         Navigate(`/campaign/update/${_id}`);
@@ -48,7 +46,7 @@ const MyCampaignTableData = ({ index, myCampaign, setMyCampaigns, myCampaigns })
         <tr className='text-center'>
             <td className='border border-gray-300 px-4 py-2'>{index + 1}</td>
             <td className='border border-gray-300 px-4 py-2'>{title}</td>
-            <td className='border border-gray-300 px-4 py-2'>{newDeadline}</td>
+            <td className='border border-gray-300 px-4 py-2'>{deadline}</td>
             <td className='border border-gray-300 px-4 py-2'>{campaign_type}</td>
             <td className='border border-gray-300 px-4 flex flex-col md:flex-row md:gap-2 justify-center items-center'>
                 <button

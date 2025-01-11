@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const CampaignTable = ({ campaign, index }) => {
-    const { _id, title, deadline, creatorName, creatorEmail } = campaign;
-    const newdeadline = new Date(deadline).toLocaleDateString('en-GB');
+    const { _id, title, deadline, creatorName, donation_amount } = campaign;
     const { user } = useContext(AuthContext);
 
     return (
@@ -13,12 +12,12 @@ const CampaignTable = ({ campaign, index }) => {
             <tr>
                 <td className='border border-gray-300 px-4 py-2'>{index + 1}</td>
                 <td className='border border-gray-300 px-4 py-2'>{title}</td>
-                <td className='border border-gray-300 px-4 py-2'>{newdeadline}</td>
-                <td className='border border-gray-300 px-4 py-2'>{creatorName}
-                </td>
+                <td className='border border-gray-300 px-4 py-2'>{deadline}</td>
+                <td className='border border-gray-300 px-4 py-2'>{creatorName}</td>
+                <td className='border border-gray-300 px-4 py-2'>{donation_amount}</td>
                 <td className='border border-gray-300 px-4 py-2'>
                     <Link to={`/card/ditails/${_id}`}
-                        className='btn hover:text-purple-300 border-2 border-purple-400 px-2 py-1 rounded-lg bg-purple-100 font-bold md:text-lg' >See More
+                        className='btn hover:text-purple-300 border-2 border-purple-400 px-2 py-1 rounded-lg bg-purple-100 font-bold md:text-sm lg:text-lg' >See More
                     </Link>
                 </td>
             </tr>
