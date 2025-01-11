@@ -39,7 +39,7 @@ const CampaignCardDetails = () => {
                         icon: "success"
                     });
                     // Redirect to my apply list
-                    navigate(`/donations/my`);
+                    navigate(`/campaign/my-donation/${user?.email}`);
                 } else {
                     Swal.fire({
                         title: "Opps!",
