@@ -85,8 +85,8 @@ const LogIn = () => {
                             onClick={handleGoogleLogIn}
                             className="btn bg-transparent font-semibold text-lg"
                         >
-                            <img src="https://i.ibb.co.com/ZdHFgMk/png-clipart-google-google.png" alt="Google Logo" className='w-8 h-8 bg-transparent rounded-full' />
-                            <h1>Sign in with Google</h1>
+                            <img src="https://i.ibb.co.com/ZdHFgMk/png-clipart-google-google.png" alt="Google Logo" className='w-7 h-7 bg-transparent rounded-full' />
+                            <h1 className='text-base'>Sign in with Google</h1>
                         </button>
                         <h1 className='divider my-5'>Or</h1>
                     </div>

@@ -16,9 +16,7 @@ const AddCampains = () => {
         const campaign_type = form.campaign_type.value;
         const description = form.description.value;
         const donation_amount = form.donation_amount.value;
-        const newdeadline = form.deadline.value;
-        // date format change to local 
-        const deadline = new Date(newdeadline).toLocaleDateString('en-GB');
+        const deadline = form.deadline.value;
         const creatorName = form.creatorName.value;
         const creatorEmail = form.creatorEmail.value;
         const newCampaign = { image, title, campaign_type, description, donation_amount, deadline, creatorName, creatorEmail}

@@ -11,11 +11,11 @@ const CampaignCardDetails = () => {
     const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
     const navigate = useNavigate();
 
-
-
     const deadlineTime = new Date(deadline).setHours(0, 0, 0, 0);
     const currentDateTime = new Date().setHours(0, 0, 0, 0);
     const isDeadline = currentDateTime <= deadlineTime ;
+
+
 
     // Donate button function
     const donateButtonHandle = (e) => {
@@ -59,8 +59,8 @@ const CampaignCardDetails = () => {
     };
 
     return (
-        <div>
-            {!isDeadline?
+        <div className='container mx-auto'>
+            {isDeadline?
             <div className="container card bg-purple-50 shadow-xl border-2 border-purple-500 mx-auto max-w-6xl mt-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
@@ -96,7 +96,6 @@ const CampaignCardDetails = () => {
                 </Link>
                 <button
                     onClick={() => setIsDonateModalOpen(true)}
-                    disabled={isDeadline}
                     className="btn hover:text-purple-400 border-2 border-purple-400 px-2 py-1 rounded-lg bg-purple-200 font-bold text-xl w-56"
                 >
                     Donate
@@ -140,10 +139,12 @@ const CampaignCardDetails = () => {
             )}
             </div>
             :
-            <div className="container card bg-purple-50 shadow-xl border-2 border-purple-500 mx-auto max-w-6xl mt-10 py-10">
-                <h1 className='text-xl md:text-2xl lg:text-4xl text-center py-2 capitalize'>This campaign has ended. </h1>
-                <h1 className='text-xl text-center py-2 max-w-4xl mx-auto mt-5'>Thank you for your interest and support. Unfortunately, donations are no longer accepted as the deadline has passed. Stay tuned for upcoming campaigns where you can make a difference!</h1>
-            </div>}
+            <>
+            <div className="card bg-purple-50 shadow-xl border-2 border-purple-500 mx-auto max-w-6xl mt-10 py-10">
+                <h1 className=' text-xl md:text-2xl lg:text-4xl text-center py-2 capitalize font-bold'>This campaign has ended. </h1>
+                <p className='text-base md:text-xl text-center py-2 max-w-4xl mx-auto mt-5'>Thank you for your interest and support. Unfortunately, donations are no longer accepted as the deadline has passed. Stay tuned for upcoming campaigns where you can make a difference!</p>
+            </div>
+            </>}
         </div>
     );
 };
