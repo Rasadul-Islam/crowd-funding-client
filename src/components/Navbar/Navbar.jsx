@@ -4,32 +4,33 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { LuLogOut } from "react-icons/lu";
 import Swal from "sweetalert2";
+import { Tooltip } from 'react-tooltip'
 
 const Navbar = () => {
     const { user, logOutUser } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
-    const menuRef = useRef(null); 
+    const menuRef = useRef(null);
 
-        // User LogOut function
-        const handleLogOut = () => {
-            logOutUser()
-                .then(() => {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Log Out Success",
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                })
-                .catch(error => {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                      });
-                })
-        }
+    // User LogOut function
+    const handleLogOut = () => {
+        logOutUser()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Log Out Success",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                });
+            })
+    }
 
     const routes = [
         { path: "/", name: "Home", id: "1" },
@@ -92,17 +93,20 @@ const Navbar = () => {
                     {
                         user ?
                             <>
-                            <button 
-                            onClick={handleLogOut}
-                            className="hover:text-purple-300 border-2 border-purple-400 px-3 py-2 rounded-lg bg-purple-200 font-bold flex justify-center items-center gap-2">Log Out<LuLogOut /></button>
-                            <div>
-                                <img
-                                    src={user?.photoURL || "https://i.ibb.co/61HT020/c-HJpdm-F0-ZS9sci9pb-WFn-ZXMvd2-Vic2l0-ZS8y-MDIz-LTAx-L3-Jt-Nj-A5-LXNvb-Glka-WNvbi13-LTAw-Mi1w-Ln-Bu.jpg"}
-                                    alt="user Avatar"
-                                    title={user?.displayName ||"User Name"}
-                                    className="w-12 h-12 rounded-full hover:border bg-gray-200"
-                                />
-                            </div>
+                                <button
+                                    onClick={handleLogOut}
+                                    className="hover:text-purple-300 border-2 border-purple-400 px-3 py-2 rounded-lg bg-purple-200 font-bold flex justify-center items-center gap-2">Log Out<LuLogOut /></button>
+                                <div className="z-50 ">
+                                    <img
+                                        src={user?.photoURL || "https://i.ibb.co/61HT020/c-HJpdm-F0-ZS9sci9pb-WFn-ZXMvd2-Vic2l0-ZS8y-MDIz-LTAx-L3-Jt-Nj-A5-LXNvb-Glka-WNvbi13-LTAw-Mi1w-Ln-Bu.jpg"}
+                                        alt="user Avatar"
+                                        data-tooltip-id="my-tooltip"
+                                        data-tooltip-content={user?.displayName || "User Name"}
+                                        data-tooltip-place="bottom"
+                                        className="w-12 h-12 rounded-full hover:border bg-gray-200"
+                                    />
+                                    <Tooltip id="my-tooltip" />
+                                </div>
                             </>
                             :
                             <>
