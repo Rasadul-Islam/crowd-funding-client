@@ -28,7 +28,7 @@ const CampaignCardDetails = () => {
         const minDonationAmount = donation_amount;
         const donationData = { donerName, donerEmail, donationAmount, campaignTitle, minDonationAmount, campaign_type };
 
-        fetch('http://localhost:5000/campaign/donate', {
+        fetch('https://crowd-server-one.vercel.app/campaign/donate', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

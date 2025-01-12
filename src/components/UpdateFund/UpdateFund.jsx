@@ -20,7 +20,7 @@ const UpdateFund = () => {
         const updateCampaign = { image, title, campaign_type, description, donation_amount, deadline}
         // console.log(newCampaign);
 
-        fetch(`http://localhost:5000/campaign/update/${_id}`, {
+        fetch(`https://crowd-server-one.vercel.app/campaign/update/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
